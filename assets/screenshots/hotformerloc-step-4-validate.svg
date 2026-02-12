@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Illustrative terminal screenshot: validating HOTFormerLoc edge deployment gates">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" />
+      <stop offset="1" stop-color="#08101f" />
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="rgba(96,165,250,0.22)" />
+      <stop offset="1" stop-color="rgba(34,197,94,0.18)" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="rgba(0,0,0,0.55)" />
+    </filter>
+  </defs>
+
+  <rect x="48" y="44" width="1104" height="632" rx="26" fill="url(#bg)" stroke="rgba(255,255,255,0.12)" filter="url(#shadow)" />
+  <rect x="48" y="44" width="1104" height="62" rx="26" fill="url(#bar)" />
+  <rect x="48" y="80" width="1104" height="26" fill="url(#bar)" />
+
+  <circle cx="92" cy="75" r="8" fill="#fb7185" />
+  <circle cx="118" cy="75" r="8" fill="#fbbf24" />
+  <circle cx="144" cy="75" r="8" fill="#22c55e" />
+
+  <text x="180" y="82" fill="rgba(255,255,255,0.78)" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="16">
+    verify loop • benchmark + accuracy gate • edge target
+  </text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
+    <text x="92" y="148" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="148" fill="rgba(255,255,255,0.90)">python eval/pnv_evaluate.py --config config/config_wild-places.txt --model_config models/hotformerloc_wild-places_cfg.txt</text>
+    <text x="92" y="186" fill="rgba(34,197,94,0.92)">--</text>
+    <text x="132" y="186" fill="rgba(255,255,255,0.78)">Accuracy baseline captured (AR@1 / MRR)</text>
+
+    <text x="92" y="236" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="236" fill="rgba(255,255,255,0.90)">python misc/edge_bench.py --model_config models/hotformerloc_wild-places_cfg.txt --precision fp16</text>
+    <text x="92" y="274" fill="rgba(34,197,94,0.92)">p95</text>
+    <text x="136" y="274" fill="rgba(255,255,255,0.78)">62ms</text>
+    <text x="210" y="274" fill="rgba(255,255,255,0.60)">peak_mem 3.1GB</text>
+
+    <text x="92" y="324" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="324" fill="rgba(255,255,255,0.90)">python misc/export_onnx.py --model_config models/hotformerloc_wild-places_cfg.txt --out hotformerloc.onnx</text>
+    <text x="92" y="362" fill="rgba(255,255,255,0.72)">hotformerloc.onnx written</text>
+    <text x="934" y="362" fill="rgba(34,197,94,0.92)">OK</text>
+
+    <text x="92" y="412" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="412" fill="rgba(255,255,255,0.90)">trtexec --onnx hotformerloc.onnx --fp16</text>
+    <text x="92" y="444" fill="rgba(255,255,255,0.72)">engine built (deterministic)</text>
+
+    <text x="92" y="486" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="486" fill="rgba(255,255,255,0.90)">python misc/edge_gate.py --latency_p95_ms 70 --recall1_drop 0.02 results.json</text>
+    <text x="92" y="518" fill="rgba(34,197,94,0.92)">PASS</text>
+    <text x="170" y="518" fill="rgba(255,255,255,0.60)">p95 + accuracy gates (ready for staged rollout)</text>
+
+    <rect x="80" y="560" width="1040" height="72" rx="18" fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.22)" />
+    <text x="112" y="604" fill="rgba(255,255,255,0.88)" font-size="18">
+      <tspan font-weight="800">Result:</tspan>
+      <tspan fill="rgba(255,255,255,0.78)"> gates pass • edge-ready (measured)</tspan>
+    </text>
+  </g>
+
+  <text x="1090" y="650" text-anchor="end" fill="rgba(255,255,255,0.45)" font-family="ui-sans-serif, system-ui" font-size="14">
+    illustrative
+  </text>
+</svg>

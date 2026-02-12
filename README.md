@@ -13,11 +13,11 @@ Because this is a static site, you can open it directly or serve it:
 - `index.html` — single-page site (sections, prompts, FAQ, references)
 - `styles.css` — responsive styling + light/dark themes
 - `app.js` — minimal JS (theme toggle, mobile nav, tabs, copy buttons)
-- `assets/screenshots/*.svg` — illustrative “screenshots” for the worked example
+- `assets/screenshots/*.svg` — illustrative “screenshots” for the worked examples
 
 ## Customize for your org
 - Replace the illustrative SVGs in `assets/screenshots/` with real screenshots from your preferred tool (Codex, Claude, Gemini, etc.).
-- The current “Worked example” is based on a real robotics repo (CSIRO OHM). Swap it to match your stack (ROS distro, build/test commands, sim, bag replay) and repo conventions.
+- The worked examples are based on real CSIRO robotics repos (OHM, RayCloudTools, HOTFormerLoc). Swap them to match your stack (ROS distro, build/test commands, sim, bag replay) and repo conventions.
 - If you need stricter governance language (security/privacy), add a short “Org policy” section near the pilot checklist.
 
 ## Deploy anywhere

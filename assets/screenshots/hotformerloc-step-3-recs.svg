@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Illustrative terminal screenshot: top edge deployment recommendations for HOTFormerLoc">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" />
+      <stop offset="1" stop-color="#08101f" />
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="rgba(96,165,250,0.22)" />
+      <stop offset="1" stop-color="rgba(34,197,94,0.18)" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="rgba(0,0,0,0.55)" />
+    </filter>
+  </defs>
+
+  <rect x="48" y="44" width="1104" height="632" rx="26" fill="url(#bg)" stroke="rgba(255,255,255,0.12)" filter="url(#shadow)" />
+  <rect x="48" y="44" width="1104" height="62" rx="26" fill="url(#bar)" />
+  <rect x="48" y="80" width="1104" height="26" fill="url(#bar)" />
+
+  <circle cx="92" cy="75" r="8" fill="#fb7185" />
+  <circle cx="118" cy="75" r="8" fill="#fbbf24" />
+  <circle cx="144" cy="75" r="8" fill="#22c55e" />
+
+  <text x="180" y="82" fill="rgba(255,255,255,0.78)" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="16">
+    recommendations • HOTFormerLoc edge deployment • ranked by impact
+  </text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
+    <text x="92" y="150" fill="rgba(255,255,255,0.74)">
+      <tspan>&gt; Analyse HOTFormerLoc for edge deployment. Provide the top 3 recommendations. Cite file paths.</tspan>
+    </text>
+
+    <text x="92" y="214" fill="rgba(34,197,94,0.92)">
+      <tspan>TOP 3 RECOMMENDATIONS</tspan>
+    </text>
+
+    <text x="92" y="248" fill="rgba(255,255,255,0.86)">
+      <tspan x="92" dy="0">1) Add AMP/FP16 inference toggles + a benchmark harness (eval/pnv_evaluate.py + misc/bench)</tspan>
+      <tspan x="92" dy="28">   Expected win: quick latency drop with minimal accuracy impact; easy A/B comparison</tspan>
+      <tspan x="92" dy="28">2) Add an export path (TorchScript/ONNX) and measure edge runtimes (TensorRT / ONNX Runtime)</tspan>
+      <tspan x="92" dy="28">   Watch-outs: custom ops (libs/dwconv); keep a safe fallback path for deployment</tspan>
+      <tspan x="92" dy="28">3) Reduce preproc + memory pressure: tune octree build, point sampling, and batch construction</tspan>
+      <tspan x="92" dy="28">   Keep accuracy via eval gate (recall@1) on a fixed subset; prefer reversible config knobs</tspan>
+    </text>
+
+    <text x="92" y="438" fill="rgba(96,165,250,0.92)">
+      <tspan>VALIDATION</tspan>
+    </text>
+    <text x="92" y="468" fill="rgba(255,255,255,0.84)">
+      <tspan x="92" dy="0">• edge benchmark gate: p95 latency ≤ target, peak memory ≤ budget (device: Jetson / small x86)</tspan>
+      <tspan x="92" dy="28">• accuracy gate: recall@1 / recall@5 delta within threshold on a fixed subset (same seeds)</tspan>
+    </text>
+
+    <text x="92" y="550" fill="rgba(251,191,36,0.92)">
+      <tspan>RISKS</tspan>
+    </text>
+    <text x="92" y="580" fill="rgba(255,255,255,0.78)">
+      <tspan x="92" dy="0">• export path may be brittle on edge (mitigate: keep a PyTorch+AMP deployment mode)</tspan>
+      <tspan x="92" dy="28">• accuracy regression via aggressive downsampling (mitigate: gate + sweep configs)</tspan>
+    </text>
+
+    <text x="92" y="652" fill="rgba(34,197,94,0.92)">
+      <tspan>ROLLBACK:</tspan>
+      <tspan fill="rgba(255,255,255,0.78)"> keep changes flag-gated; revert one PR if edge metrics regress</tspan>
+    </text>
+  </g>
+
+  <text x="1090" y="650" text-anchor="end" fill="rgba(255,255,255,0.45)" font-family="ui-sans-serif, system-ui" font-size="14">
+    illustrative
+  </text>
+</svg>

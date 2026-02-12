@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Illustrative terminal screenshot: edge profiling plan for HOTFormerLoc">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" />
+      <stop offset="1" stop-color="#08101f" />
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="rgba(96,165,250,0.22)" />
+      <stop offset="1" stop-color="rgba(34,197,94,0.18)" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="rgba(0,0,0,0.55)" />
+    </filter>
+  </defs>
+
+  <rect x="48" y="44" width="1104" height="632" rx="26" fill="url(#bg)" stroke="rgba(255,255,255,0.12)" filter="url(#shadow)" />
+  <rect x="48" y="44" width="1104" height="62" rx="26" fill="url(#bar)" />
+  <rect x="48" y="80" width="1104" height="26" fill="url(#bar)" />
+
+  <circle cx="92" cy="75" r="8" fill="#fb7185" />
+  <circle cx="118" cy="75" r="8" fill="#fbbf24" />
+  <circle cx="144" cy="75" r="8" fill="#22c55e" />
+
+  <text x="180" y="82" fill="rgba(255,255,255,0.78)" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="16">
+    plan-first workflow • HOTFormerLoc edge deployment • profile + gate
+  </text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
+    <text x="92" y="150" fill="rgba(255,255,255,0.74)">
+      <tspan>&gt; Plan edge deployment (no code yet). Include constraints, profiling, acceptance criteria. Cite files.</tspan>
+    </text>
+
+    <text x="92" y="214" fill="rgba(34,197,94,0.92)">
+      <tspan>PLAN (6 steps)</tspan>
+    </text>
+
+    <text x="92" y="248" fill="rgba(255,255,255,0.86)">
+      <tspan x="92" dy="0">1) Confirm target constraints: device, FPS/latency, power, RAM/VRAM, accuracy metric</tspan>
+      <tspan x="92" dy="28">2) Add deterministic benchmark script (e.g., misc/edge_bench.py) for p50/p95 + peak memory</tspan>
+      <tspan x="92" dy="28">3) Instrument eval/pnv_evaluate.py to separate preproc vs forward vs postproc</tspan>
+      <tspan x="92" dy="28">4) Add safe toggles for AMP/FP16 inference (A/B compare) and measure</tspan>
+      <tspan x="92" dy="28">5) Prototype export path (TorchScript/ONNX) and an edge runtime (TensorRT/ORT)</tspan>
+      <tspan x="92" dy="28">6) Define an accuracy gate on a fixed subset (e.g., recall@1 delta ≤ threshold)</tspan>
+    </text>
+
+    <text x="92" y="438" fill="rgba(96,165,250,0.92)">
+      <tspan>VALIDATION</tspan>
+    </text>
+    <text x="92" y="468" fill="rgba(255,255,255,0.84)">
+      <tspan x="92" dy="0">• run baseline + optimized builds on the target device (log p50/p95 latency + GPU memory)</tspan>
+      <tspan x="92" dy="28">• run accuracy eval on a fixed subset; assert recall drop stays within the agreed threshold</tspan>
+    </text>
+
+    <text x="92" y="550" fill="rgba(251,191,36,0.92)">
+      <tspan>RISKS</tspan>
+    </text>
+    <text x="92" y="580" fill="rgba(255,255,255,0.78)">
+      <tspan x="92" dy="0">• export may be blocked by custom ops (mitigate: PyTorch + AMP; or write export-friendly kernels)</tspan>
+      <tspan x="92" dy="28">• preproc becomes dominant on edge CPU (mitigate: simplify octree build; batch; pin memory)</tspan>
+    </text>
+
+    <text x="92" y="652" fill="rgba(34,197,94,0.92)">
+      <tspan>ROLLBACK:</tspan>
+      <tspan fill="rgba(255,255,255,0.78)"> changes are additive + flag-gated; revert one commit if needed</tspan>
+    </text>
+  </g>
+
+  <text x="1090" y="650" text-anchor="end" fill="rgba(255,255,255,0.45)" font-family="ui-sans-serif, system-ui" font-size="14">
+    illustrative
+  </text>
+</svg>

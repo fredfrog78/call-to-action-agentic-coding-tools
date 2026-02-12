@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Illustrative terminal screenshot: mapping HOTFormerLoc inference for edge deployment">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" />
+      <stop offset="1" stop-color="#08101f" />
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="rgba(96,165,250,0.22)" />
+      <stop offset="1" stop-color="rgba(34,197,94,0.18)" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="rgba(0,0,0,0.55)" />
+    </filter>
+  </defs>
+
+  <rect x="48" y="44" width="1104" height="632" rx="26" fill="url(#bg)" stroke="rgba(255,255,255,0.12)" filter="url(#shadow)" />
+  <rect x="48" y="44" width="1104" height="62" rx="26" fill="url(#bar)" />
+  <rect x="48" y="80" width="1104" height="26" fill="url(#bar)" />
+
+  <circle cx="92" cy="75" r="8" fill="#fb7185" />
+  <circle cx="118" cy="75" r="8" fill="#fbbf24" />
+  <circle cx="144" cy="75" r="8" fill="#22c55e" />
+
+  <text x="180" y="82" fill="rgba(255,255,255,0.78)" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="16">
+    codex • read-only session • HOTFormerLoc map
+  </text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18" fill="rgba(255,255,255,0.90)">
+    <text x="92" y="150">
+      <tspan fill="rgba(96,165,250,0.95)">$</tspan>
+      <tspan> codex --read-only</tspan>
+    </text>
+    <text x="92" y="184" fill="rgba(255,255,255,0.74)">
+      <tspan>&gt; Map HOTFormerLoc inference + edge deployment touchpoints. Cite file paths.</tspan>
+    </text>
+
+    <text x="92" y="236" fill="rgba(34,197,94,0.92)">
+      <tspan>ARCHITECTURE MAP (verified by file paths)</tspan>
+    </text>
+
+    <text x="92" y="270" fill="rgba(255,255,255,0.86)">
+      <tspan x="92" dy="0">• config/config_*.txt — dataset + hyperparameter configs</tspan>
+      <tspan x="92" dy="28">• models/hotformerloc.py — HOTFormerLoc model definition</tspan>
+      <tspan x="92" dy="28">• models/model_factory.py — model construction from config</tspan>
+      <tspan x="92" dy="28">• eval/pnv_evaluate.py — evaluation/inference loop (good hook for profiling)</tspan>
+      <tspan x="92" dy="28">• training/train.py — training entrypoint + dataloading</tspan>
+      <tspan x="92" dy="28">• libs/dwconv/ — custom ops (edge runtime constraints)</tspan>
+    </text>
+
+    <text x="92" y="480" fill="rgba(96,165,250,0.92)">
+      <tspan>RECOMMENDED CHANGE</tspan>
+    </text>
+    <text x="92" y="510" fill="rgba(255,255,255,0.84)">
+      <tspan x="92" dy="0">• add a benchmark harness (e.g., misc/edge_bench.py): p50/p95 latency + peak memory</tspan>
+      <tspan x="92" dy="28">• add AMP/FP16 toggles for inference in eval/pnv_evaluate.py (easy A/B comparisons)</tspan>
+      <tspan x="92" dy="28">• add optional export path (TorchScript/ONNX) for edge runtimes (TensorRT/ORT)</tspan>
+    </text>
+  </g>
+
+  <text x="1090" y="650" text-anchor="end" fill="rgba(255,255,255,0.45)" font-family="ui-sans-serif, system-ui" font-size="14">
+    illustrative
+  </text>
+</svg>

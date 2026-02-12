@@ -12,7 +12,7 @@
     <meta property="og:title" content="Agentic Coding Tools for Robotics: Ship faster on ROS 2—without losing rigor" />
     <meta
       property="og:description"
-      content="Understand the phase change, see a ROS 2 worked example, and run a 30‑minute pilot with guardrails that reduce uncertainty."
+      content="Understand the phase change, see worked examples from real robotics repos, and run a 30‑minute pilot with guardrails that reduce uncertainty."
     />
     <meta property="og:type" content="website" />
 
@@ -78,7 +78,7 @@
 
             <div class="cta-row">
               <a class="btn btn-primary" href="#pilot">Start a 30‑minute pilot</a>
-              <a class="btn btn-secondary" href="#example">See the worked example</a>
+              <a class="btn btn-secondary" href="#example">See the worked examples</a>
             </div>
 
             <dl class="stat-row" aria-label="Evidence highlights">
@@ -318,8 +318,9 @@
         <div class="container">
           <h2>Worked examples (real robotics repos)</h2>
           <p class="muted">
-            Two end‑to‑end agentic workflows pulled from real CSIRO robotics code: (1) fixing a silent config bug in OHM,
-            and (2) adding a “smart filter” to RayCloudTools to keep high‑confidence points and drop noise.
+            Three end‑to‑end agentic workflows pulled from real CSIRO robotics code: (1) fixing a silent config bug in
+            OHM, (2) adding a “smart filter” to RayCloudTools to keep high‑confidence points and drop noise, and (3)
+            generating a concrete edge‑deployment plan for HOTFormerLoc without a performance cliff.
           </p>
 
           <div class="tabs" data-tabs>
@@ -329,6 +330,16 @@
               </button>
               <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="examples-tab-rct" id="examples-t-rct">
                 RayCloudTools smart filter
+              </button>
+              <button
+                class="tab"
+                type="button"
+                role="tab"
+                aria-selected="false"
+                aria-controls="examples-tab-hotformer"
+                id="examples-t-hotformer"
+              >
+                HOTFormerLoc edge deployment
               </button>
             </div>
 
@@ -696,6 +707,221 @@ ctest --test-dir build -R raytest --output-on-failure
               </figure>
             </article>
           </div>
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="examples-tab-hotformer" aria-labelledby="examples-t-hotformer">
+              <div class="banner">
+                <div class="banner-title">Example 3 — HOTFormerLoc: edge deployment without a performance cliff</div>
+                <p class="banner-body">
+                  Derived from <a href="https://github.com/csiro-robotics/HOTFormerLoc">csiro-robotics/HOTFormerLoc</a>.
+                  This one is about shipping: identify the inference hot path, then pick a small set of changes that make
+                  it run well on edge hardware without a big accuracy hit.
+                </p>
+              </div>
+
+              <div class="example-grid">
+                <article class="card">
+                  <div class="step-head">
+                    <span class="step-num">1</span>
+                    <h3>Map the inference path (read‑only)</h3>
+                  </div>
+                  <p class="muted">
+                    Find how inference is invoked, where the model lives, and what the repo already supports (export,
+                    mixed precision, batching).
+                  </p>
+
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>Read this repo in read-only mode: https://github.com/csiro-robotics/HOTFormerLoc
+
+Task: map the end-to-end inference pipeline and the likely runtime hot spots.
+
+Find and cite (file paths + symbols):
+1) model definition + config entrypoints,
+2) inference/eval entrypoints (single run + batch eval),
+3) any existing export/acceleration hooks (TorchScript/ONNX/TensorRT, AMP, etc.),
+4) the likely bottlenecks (attention blocks, point cloud preproc, dataloader, CPU↔GPU copies).
+
+Output: a short architecture map + a prioritized list of where to optimize first.</code></pre>
+                  </div>
+
+                  <figure class="shot">
+                    <img
+                      src="assets/screenshots/hotformerloc-step-1-map.svg"
+                      alt="Illustrative screenshot: terminal output mapping HOTFormerLoc inference entrypoints and bottlenecks"
+                      loading="lazy"
+                    />
+                    <figcaption>Outcome: you know what you’d actually ship to a robot.</figcaption>
+                  </figure>
+                </article>
+
+                <article class="card">
+                  <div class="step-head">
+                    <span class="step-num">2</span>
+                    <h3>Force constraints + profiling</h3>
+                  </div>
+                  <p class="muted">
+                    Make it ask the right questions: target device, latency/FPS, memory budget, and acceptable accuracy
+                    delta.
+                  </p>
+
+                  <div class="tabs" data-tabs>
+                    <div class="tablist" role="tablist" aria-label="Prompts by tool (HOTFormerLoc)">
+                      <button class="tab" type="button" role="tab" aria-selected="true" aria-controls="hfl-tab-codex" id="hfl-t-codex">
+                        Codex
+                      </button>
+                      <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="hfl-tab-claude" id="hfl-t-claude">
+                        Claude
+                      </button>
+                      <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="hfl-tab-gemini" id="hfl-t-gemini">
+                        Gemini
+                      </button>
+                    </div>
+
+                    <div class="tabpanel" role="tabpanel" id="hfl-tab-codex" aria-labelledby="hfl-t-codex">
+                      <div class="codeblock" data-copy-block>
+                        <div class="codebar">
+                          <span class="code-title">Prompt</span>
+                          <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                        </div>
+                        <pre><code>Propose an edge-deployment profiling plan for csiro-robotics/HOTFormerLoc.
+
+Assume the target is edge robotics hardware (Jetson / small x86) with tight power + memory limits.
+
+Deliverables:
+1) the 5 questions you need answered (device, FPS/latency, memory, accuracy metric, ROS 2 integration),
+2) a concrete measurement harness (what script to add, what it measures, fixed seeds, dataset subset),
+3) acceptance criteria for “no significant loss of performance” (runtime + accuracy),
+4) how to compare: baseline vs fp16/onnx/tensorrt vs architectural changes.</code></pre>
+                      </div>
+                    </div>
+
+                    <div class="tabpanel" role="tabpanel" id="hfl-tab-claude" aria-labelledby="hfl-t-claude">
+                      <div class="codeblock" data-copy-block>
+                        <div class="codebar">
+                          <span class="code-title">Prompt</span>
+                          <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                        </div>
+                        <pre><code>Before recommending optimizations: ask me the minimum set of questions needed for edge deployment.
+Then propose a profiling plan with exact repo touchpoints (scripts, modules) and what metrics to log.
+
+Constraints:
+- deterministic benchmarking,
+- report latency percentiles (p50/p95),
+- separate preproc vs model forward vs postproc,
+- avoid adding heavy dependencies unless necessary.</code></pre>
+                      </div>
+                    </div>
+
+                    <div class="tabpanel" role="tabpanel" id="hfl-tab-gemini" aria-labelledby="hfl-t-gemini">
+                      <div class="codeblock" data-copy-block>
+                        <div class="codebar">
+                          <span class="code-title">Prompt</span>
+                          <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                        </div>
+                        <pre><code>Create a profiling + edge constraints plan for HOTFormerLoc.
+Output:
+- required clarifying questions,
+- a baseline benchmark command sequence,
+- a list of candidate optimizations ranked by expected win and risk,
+- how to validate accuracy and runtime on the target device.</code></pre>
+                      </div>
+                    </div>
+                  </div>
+
+                  <figure class="shot">
+                    <img
+                      src="assets/screenshots/hotformerloc-step-2-plan.svg"
+                      alt="Illustrative screenshot: a profiling plan for HOTFormerLoc with constraints, metrics, and acceptance criteria"
+                      loading="lazy"
+                    />
+                    <figcaption>Outcome: you avoid “optimizing” the wrong thing.</figcaption>
+                  </figure>
+                </article>
+
+                <article class="card">
+                  <div class="step-head">
+                    <span class="step-num">3</span>
+                    <h3>Get the top 3 edge recommendations</h3>
+                  </div>
+                  <p class="muted">
+                    Ask for the three highest‑leverage changes with concrete tradeoffs, and require file paths so you can
+                    verify.
+                  </p>
+
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>Analyse this repo for edge deployment: https://github.com/csiro-robotics/HOTFormerLoc
+
+Goal: provide the top 3 recommendations to enable edge deployment without significant loss of performance.
+
+For each recommendation, include:
+1) what to change (files/modules),
+2) why it helps (compute/memory),
+3) expected impact (latency, memory, model size),
+4) accuracy trade-offs / risks,
+5) how to validate (commands, metrics, acceptance criteria).
+
+Prefer recommendations that are:
+- minimally invasive,
+- easy to A/B compare,
+- and compatible with robotics workflows (bag replay / sim / staged deployment).</code></pre>
+                  </div>
+
+                  <figure class="shot">
+                    <img
+                      src="assets/screenshots/hotformerloc-step-3-recs.svg"
+                      alt="Illustrative screenshot: a ranked top-3 list of edge deployment recommendations for HOTFormerLoc"
+                      loading="lazy"
+                    />
+                    <figcaption>Outcome: three options you can turn into tickets or a small PR sequence.</figcaption>
+                  </figure>
+                </article>
+
+                <article class="card">
+                  <div class="step-head">
+                    <span class="step-num">4</span>
+                    <h3>Define the edge deployment gate</h3>
+                  </div>
+                  <p class="muted">
+                    “Runs on my workstation” isn’t done. Ask for a reproducible benchmark + accuracy gate you can run on
+                    the target.
+                  </p>
+
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>For HOTFormerLoc, propose an “edge deployment gate” checklist that a robotics team can adopt.
+
+Include:
+- export path (TorchScript/ONNX),
+- runtime choice (TensorRT / ONNX Runtime / PyTorch),
+- a benchmark harness (script name, how to run, what it logs),
+- an accuracy regression check,
+- packaging notes (Docker, ROS 2 node wrapper if applicable),
+- rollback strategy.
+
+Output should be concrete and actionable: file paths, commands, and acceptance criteria.</code></pre>
+                  </div>
+
+                  <figure class="shot">
+                    <img
+                      src="assets/screenshots/hotformerloc-step-4-validate.svg"
+                      alt="Illustrative screenshot: an edge deployment validation checklist with benchmark and accuracy gates"
+                      loading="lazy"
+                    />
+                    <figcaption>Outcome: “edge-ready” becomes measurable.</figcaption>
+                  </figure>
+                </article>
+              </div>
             </div>
           </div>
         </div>
