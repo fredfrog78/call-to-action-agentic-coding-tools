@@ -1,0 +1,890 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A practical, evidence-informed guide to adopting agentic coding tools for robotics software (ROS 2, perception, autonomy, deployment)—without sacrificing rigor."
+    />
+    <meta name="theme-color" content="#0b1220" />
+
+    <meta property="og:title" content="Agentic Coding Tools for Robotics: Ship faster on ROS 2—without losing rigor" />
+    <meta
+      property="og:description"
+      content="Understand the phase change, see a ROS 2 worked example, and run a 30‑minute pilot with guardrails that reduce uncertainty."
+    />
+    <meta property="og:type" content="website" />
+
+    <title>Agentic Coding Tools for Robotics — A Practical Call to Action</title>
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-elevate>
+      <div class="container header-row">
+        <div class="brand">
+          <a class="brand-link" href="#top" aria-label="Agentic Coding Tools home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name">Agentic Coding Tools</span>
+          </a>
+          <span class="brand-tag">ROS 2-ready. Rigor-first.</span>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" type="button" aria-controls="nav-links" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span aria-hidden="true">Menu</span>
+          </button>
+
+          <div class="nav-links" id="nav-links">
+            <a class="nav-link" href="#phase-change">Phase change</a>
+            <a class="nav-link" href="#capabilities">Capabilities</a>
+            <a class="nav-link" href="#evidence">Evidence</a>
+            <a class="nav-link" href="#example">Worked examples</a>
+            <a class="nav-link" href="#pilot">30‑min pilot</a>
+            <a class="nav-link" href="#faq">FAQ</a>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <button class="btn btn-quiet theme-toggle" type="button" aria-label="Toggle theme" data-theme-toggle>
+            <span class="theme-toggle-label">Theme</span>
+          </button>
+          <a class="btn btn-primary" href="#pilot">Start a pilot</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="pill">For engineers &amp; researchers</span>
+              <span class="pill pill-quiet">ROS 2 workspaces</span>
+              <span class="pill pill-quiet">Perception • autonomy • deployment</span>
+            </p>
+
+            <h1>Agentic coding tools are a phase change for robotics software, not a plugin.</h1>
+            <p class="lead">
+              Modern assistants can <strong>map a ROS&nbsp;2 stack</strong>, <strong>edit your workspace</strong>,
+              <strong>run colcon/tests</strong>, and <strong>iterate</strong>—turning “I know what to do” into a reviewed,
+              reproducible change faster, while you stay in control.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn btn-primary" href="#pilot">Start a 30‑minute pilot</a>
+              <a class="btn btn-secondary" href="#example">See the worked example</a>
+            </div>
+
+            <dl class="stat-row" aria-label="Evidence highlights">
+              <div class="stat">
+                <dt>55%</dt>
+                <dd>faster on a controlled coding task (GitHub research)</dd>
+              </div>
+              <div class="stat">
+                <dt>84%</dt>
+                <dd>use or plan to use AI tools (Stack Overflow 2025)</dd>
+              </div>
+              <div class="stat">
+                <dt>46%</dt>
+                <dd>distrust AI accuracy (also Stack Overflow 2025)</dd>
+              </div>
+            </dl>
+
+            <p class="note">
+              If you ship robots, you already know the pain: launch + parameter sprawl, QoS mismatches, tf trees, bag
+              replay regressions, and deployments that fail for “one tiny config change.”
+            </p>
+          </div>
+
+          <div class="hero-visual" aria-label="Illustration: an agentic loop">
+            <div class="glass">
+              <div class="loop">
+                <div class="loop-step">
+                  <div class="loop-icon" aria-hidden="true">1</div>
+                  <div>
+                    <div class="loop-title">Map</div>
+                    <div class="loop-desc">Packages, launch, params, topics, tf</div>
+                  </div>
+                </div>
+                <div class="loop-step">
+                  <div class="loop-icon" aria-hidden="true">2</div>
+                  <div>
+                    <div class="loop-title">Plan</div>
+                    <div class="loop-desc">Steps, tests, sim/bag replay, rollout</div>
+                  </div>
+                </div>
+                <div class="loop-step">
+                  <div class="loop-icon" aria-hidden="true">3</div>
+                  <div>
+                    <div class="loop-title">Patch</div>
+                    <div class="loop-desc">Edit files as a reviewable diff</div>
+                  </div>
+                </div>
+                <div class="loop-step">
+                  <div class="loop-icon" aria-hidden="true">4</div>
+                  <div>
+                    <div class="loop-title">Verify</div>
+                    <div class="loop-desc">colcon test, lint, sim smoke tests</div>
+                  </div>
+                </div>
+              </div>
+              <div class="callout">
+                <div class="callout-title">The trick</div>
+                <p class="callout-body">
+                  Use the tool for <strong>mechanical work</strong> and <strong>fast iteration</strong>, but keep the
+                  engineering loop sacred: small diffs, <strong>colcon tests</strong>, bag replay or sim runs, and
+                  code review before anything touches a real robot.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="phase-change">
+        <div class="container">
+          <h2>The phase change: from autocomplete to agentic loops</h2>
+          <p class="muted">
+            “Autocomplete” helps you type. “Chat” helps you think. “Agentic” helps you <em>do work</em> end‑to‑end by
+            using tools (repo search, edits, builds, tests) inside your robotics workspace.
+          </p>
+
+          <div class="grid-3">
+            <article class="card">
+              <h3>Autocomplete</h3>
+              <ul class="checklist">
+                <li>Speeds up local code writing</li>
+                <li>Low risk, low leverage</li>
+                <li>Still you doing every step</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Chat assistant</h3>
+              <ul class="checklist">
+                <li>Explains concepts &amp; code</li>
+                <li>Great for tf/QoS/launch “why is this broken?” moments</li>
+                <li>Still leaves you doing the glue work</li>
+              </ul>
+            </article>
+
+            <article class="card card-accent">
+              <h3>Agentic tool</h3>
+              <ul class="checklist">
+                <li>Reads your workspace + launch/params</li>
+                <li>Creates patches as diffs</li>
+                <li>Runs colcon, tests, and iterates</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="quote">
+            <p>
+              The most common failure mode I hit wasn’t “AI is useless.” It was “AI is almost right.” In robotics, “almost
+              right” becomes flaky bringup, subtle frame issues, or a regression that only shows up on hardware. The
+              solution is not vibes; it’s a workflow: permissions, diffs, tests, bag replay/sim, and review.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="capabilities">
+        <div class="container">
+          <h2>What agentic tools can do in real ROS&nbsp;2 autonomy stacks</h2>
+          <p class="muted">
+            The point isn’t replacing engineering judgment. It’s compressing the time between “I understand the bug”
+            and “the fix is merged with tests and a reproducible validation.”
+          </p>
+
+          <div class="grid-2">
+            <article class="card">
+              <h3>ROS&nbsp;2 spelunking that scales</h3>
+              <p class="muted">
+                Ask for a map of packages, launch entrypoints, parameters, and runtime wiring. Great when you inherit a
+                stack with “just run bringup.launch.py” vibes.
+              </p>
+              <ul class="bullets">
+                <li>Find who publishes <code>/cmd_vel</code> and where it’s remapped</li>
+                <li>Trace perception: driver → preprocessing → detector → tracker</li>
+                <li>Summarize tf frames, QoS expectations, and lifecycle transitions</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Launch + parameter refactors safely</h3>
+              <p class="muted">
+                Refactors across launch files, parameter YAMLs, and message schemas are painful but mechanical—perfect for
+                an agent paired with build/test gates.
+              </p>
+              <ul class="bullets">
+                <li>Normalize params.yaml structure across robots</li>
+                <li>Fix QoS mismatches (reliability/history/depth)</li>
+                <li>Keep bringup reproducible across sim and hardware</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Bag replay + sim smoke tests</h3>
+              <p class="muted">Turn field logs into regression tests. Let the agent scaffold, then you define “correct.”</p>
+              <ul class="bullets">
+                <li>Create a rosbag2-based repro for “works on robot A” bugs</li>
+                <li>Add headless sim smoke tests for launch and lifecycle</li>
+                <li>Generate edge cases (timestamps, missing tf, sensor dropouts)</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>“Explain the diff” for safety review</h3>
+              <p class="muted">Ask it to justify each change, list hazards, and propose rollback/feature flags.</p>
+              <ul class="bullets">
+                <li>Hazard notes + mitigations you can audit</li>
+                <li>Runtime guards + parameter flags (ship “off” first)</li>
+                <li>Rollout checklist: sim → bag replay → staged robot test</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="banner">
+            <div class="banner-title">Pick a tool your org approves</div>
+            <p class="banner-body">
+              Codex, Claude, and Gemini can all be used in agentic workflows. Exact features vary by product, but the
+              adoption pattern is the same: start read‑only, earn trust, then expand permissions (especially before you
+              run anything near hardware).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="evidence">
+        <div class="container">
+          <h2>Evidence: productivity is real, trust is the bottleneck</h2>
+          <p class="muted">
+            Engineers don’t need hype; they need signal. Here are two widely cited data points and what they mean for
+            adoption.
+          </p>
+
+          <div class="grid-2">
+            <article class="card">
+              <h3>Controlled productivity lift (task-level)</h3>
+              <p>
+                GitHub research found developers completed a coding task <strong>55% faster</strong> with Copilot in a
+                controlled study.
+              </p>
+              <ul class="bullets">
+                <li>Useful: shows time-to-first-solution compression</li>
+                <li>Caveat: “toy task” isn’t your autonomy stack</li>
+                <li>Action: measure in your own repo with a pilot</li>
+              </ul>
+              <p class="refs">
+                <a href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/">
+                  Source: GitHub Research
+                </a>
+              </p>
+            </article>
+
+            <article class="card">
+              <h3>Adoption is high, skepticism is higher</h3>
+              <p>
+                In Stack Overflow’s 2025 survey, <strong>84%</strong> of respondents <em>use or plan to use</em> AI tools,
+                yet many report distrust and “almost-right” frustration.
+              </p>
+              <ul class="bullets">
+                <li>Trust gap is the blocking factor</li>
+                <li>“Almost right” needs tests + diffs</li>
+                <li>Agentic tools help by closing the loop</li>
+              </ul>
+              <p class="refs">
+                <a href="https://survey.stackoverflow.co/2025/ai">Source: Stack Overflow Developer Survey 2025</a>
+              </p>
+            </article>
+          </div>
+
+          <div class="quote">
+            <p>
+              The thing that convinced me wasn’t a debate. It was a controlled pilot in a real ROS&nbsp;2 package: fixed
+              scope, fixed timebox, pre-defined success criteria, and a diff the team could review.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="example">
+        <div class="container">
+          <h2>Worked examples (real robotics repos)</h2>
+          <p class="muted">
+            Two end‑to‑end agentic workflows pulled from real CSIRO robotics code: (1) fixing a silent config bug in OHM,
+            and (2) adding a “smart filter” to RayCloudTools to keep high‑confidence points and drop noise.
+          </p>
+
+          <div class="tabs" data-tabs>
+            <div class="tablist" role="tablist" aria-label="Worked examples">
+              <button class="tab" type="button" role="tab" aria-selected="true" aria-controls="examples-tab-ohm" id="examples-t-ohm">
+                OHM bug fix
+              </button>
+              <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="examples-tab-rct" id="examples-t-rct">
+                RayCloudTools smart filter
+              </button>
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="examples-tab-ohm" aria-labelledby="examples-t-ohm">
+          <div class="banner">
+            <div class="banner-title">Example 1 — OHM: silent boolean parsing bug</div>
+            <p class="banner-body">
+              Derived from <a href="https://github.com/csiro-robotics/ohm">csiro-robotics/ohm</a>. Documented boolean strings like
+              <code>false</code>/<code>no</code>/<code>off</code> are interpreted as <code>true</code>—a classic “config says off,
+              behavior is on” failure.
+            </p>
+          </div>
+
+          <div class="example-grid">
+            <article class="card">
+              <div class="step-head">
+                <span class="step-num">1</span>
+                <h3>Map the codebase (read‑only)</h3>
+              </div>
+              <p class="muted">
+                Ask the agent to find the boolean parsing logic, match it against the docs, and give you file/line
+                references you can independently verify.
+              </p>
+
+              <div class="codeblock" data-copy-block>
+                <div class="codebar">
+                  <span class="code-title">Prompt</span>
+                  <button class="btn btn-quiet btn-copy" type="button" data-copy>
+                    Copy
+                  </button>
+                </div>
+                <pre><code>Read this repo in read-only mode: https://github.com/csiro-robotics/ohm
+
+Task: verify that MapValue boolean parsing matches its documentation (true/false/yes/no/on/off).
+
+Output:
+1) the exact code path (file + line numbers),
+2) a minimal failing example (a few lines of C++),
+3) impact analysis: what can be silently misconfigured,
+4) the smallest safe fix (no refactor).</code></pre>
+              </div>
+
+              <figure class="shot">
+                <img
+                  src="assets/screenshots/step-1-map.svg"
+                  alt="Illustrative screenshot: terminal output identifying an OHM boolean parsing bug with file/line references"
+                  loading="lazy"
+                />
+                <figcaption>Outcome: you get a map you can verify against file paths.</figcaption>
+              </figure>
+            </article>
+
+            <article class="card">
+              <div class="step-head">
+                <span class="step-num">2</span>
+                <h3>Force a plan + tests</h3>
+              </div>
+              <p class="muted">
+                Don’t accept a patch without a plan. Ask for edge cases, rollback, and explicit tests.
+              </p>
+
+              <div class="tabs" data-tabs>
+                <div class="tablist" role="tablist" aria-label="Prompts by tool">
+                  <button class="tab" type="button" role="tab" aria-selected="true" aria-controls="ohm-tab-codex" id="ohm-t-codex">
+                    Codex
+                  </button>
+                  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="ohm-tab-claude" id="ohm-t-claude">
+                    Claude
+                  </button>
+                  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="ohm-tab-gemini" id="ohm-t-gemini">
+                    Gemini
+                  </button>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="ohm-tab-codex" aria-labelledby="ohm-t-codex">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>Propose a plan to fix a critical boolean parsing bug in OHM:
+- MapValue should parse "false"/"no"/"off" as false (it currently doesn’t).
+
+Constraints:
+- keep behavior identical for numeric strings ("0"/"1") and unknown strings (fallback to float != 0),
+- patch should be minimal and reviewable,
+- add a gtest that fails before the fix and passes after,
+- include exact commands to run the specific test.</code></pre>
+                  </div>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="ohm-tab-claude" aria-labelledby="ohm-t-claude">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>Before writing code: produce a concrete plan with exact file paths + line references, then propose:
+- the minimal code change,
+- a unit test (gtest),
+- and a quick way to validate (ctest or gtest filter).
+
+Then ask me 3 questions if anything is ambiguous.</code></pre>
+                  </div>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="ohm-tab-gemini" aria-labelledby="ohm-t-gemini">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>Plan a minimal fix for a boolean string parsing bug in a C++ robotics library.
+Include:
+- exact files to change,
+- acceptance criteria,
+- tests to add,
+- how to validate locally (cmake + ctest; no GPU dependencies).</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <figure class="shot">
+                <img
+                  src="assets/screenshots/step-2-plan.svg"
+                  alt="Illustrative screenshot: a concise plan to fix an OHM bug with a unit test and rollback notes"
+                  loading="lazy"
+                />
+                <figcaption>Outcome: a plan that turns “almost right” into verifiable steps.</figcaption>
+              </figure>
+            </article>
+
+            <article class="card">
+              <div class="step-head">
+                <span class="step-num">3</span>
+                <h3>Apply the patch as a diff</h3>
+              </div>
+              <p class="muted">
+                Keep it boring: fix the bug, add a test, and explain the diff. No refactors.
+              </p>
+              <figure class="shot">
+                <img
+                  src="assets/screenshots/step-3-diff.svg"
+                  alt="Illustrative screenshot: a small OHM diff fixing boolean parsing"
+                  loading="lazy"
+                />
+                <figcaption>Outcome: review stays human-scale.</figcaption>
+              </figure>
+            </article>
+
+            <article class="card">
+              <div class="step-head">
+                <span class="step-num">4</span>
+                <h3>Run tests and validate</h3>
+              </div>
+              <p class="muted">
+                Make the tool run the same checks you require in CI. Treat failures as part of the loop, not a surprise.
+              </p>
+              <div class="codeblock" data-copy-block>
+                <div class="codebar">
+                  <span class="code-title">Commands</span>
+                  <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                </div>
+                <pre><code># from the OHM repo root (CPU-only build)
+cmake -S . -B build -DOHM_FEATURE_TEST=ON -DOHM_FEATURE_OPENCL=OFF -DOHM_FEATURE_CUDA=OFF
+cmake --build build -j
+
+# run tests (or filter to your new test)
+ctest --test-dir build -R ohmtest --output-on-failure
+./build/bin/ohmtest --gtest_filter=MapValueBoolFromString*</code></pre>
+              </div>
+              <figure class="shot">
+                <img
+                  src="assets/screenshots/step-4-tests.svg"
+                  alt="Illustrative screenshot: terminal output showing ctest and gtest passing"
+                  loading="lazy"
+                />
+                <figcaption>Outcome: you merge with confidence, not hope.</figcaption>
+              </figure>
+            </article>
+          </div>
+
+            </div>
+
+            <div class="tabpanel" role="tabpanel" id="examples-tab-rct" aria-labelledby="examples-t-rct">
+          <div class="banner banner-accent">
+            <div class="banner-title">Example 2 — RayCloudTools: add a “smart filter” for noisy points</div>
+            <p class="banner-body">
+              Derived from <a href="https://github.com/csiro-robotics/raycloudtools">csiro-robotics/raycloudtools</a>. Ray clouds
+              carry per‑point sensor origins (stored in the PLY normal field) and optional intensity (stored in alpha). We’ll add a
+              filter that scores confidence and keeps the good geometry.
+            </p>
+          </div>
+
+          <div class="example-grid">
+            <article class="card">
+              <div class="step-head">
+                <span class="step-num">1</span>
+                <h3>Map the pipeline (read‑only)</h3>
+              </div>
+              <p class="muted">
+                Find where ray clouds live, how existing denoising works, and where a new CLI tool fits into the build.
+              </p>
+
+              <div class="codeblock" data-copy-block>
+                <div class="codebar">
+                  <span class="code-title">Prompt</span>
+                  <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                </div>
+                <pre><code>Read this repo in read-only mode: https://github.com/csiro-robotics/raycloudtools
+
+Goal: add a new CLI tool (or mode) that acts as a “smart filter” for ray clouds:
+- remove noisy bounded points,
+- keep high-confidence bounded points,
+- keep unbounded rays untouched.
+
+Find and cite:
+1) where intensity/boundedness is represented (alpha channel) and the raycloud format,
+2) existing noise removal code (e.g., raydenoise) and any reusable helpers (kNN, surfels),
+3) how a new tool is wired into CMake (raycloudtools/* layout),
+4) how tests are structured (tests/raytest).
+
+Output: a short architecture map + the smallest set of files to change.</code></pre>
+              </div>
+
+              <figure class="shot">
+                <img
+                  src="assets/screenshots/raycloudtools-step-1-map.svg"
+                  alt="Illustrative screenshot: terminal output mapping raycloudtools file layout and relevant APIs"
+                  loading="lazy"
+                />
+                <figcaption>Outcome: the work becomes a small, bounded patch with real file paths.</figcaption>
+              </figure>
+            </article>
+
+            <article class="card">
+              <div class="step-head">
+                <span class="step-num">2</span>
+                <h3>Force a plan + tests</h3>
+              </div>
+              <p class="muted">Make it specify the confidence score, CLI, performance bounds, and tests.</p>
+
+              <div class="tabs" data-tabs>
+                <div class="tablist" role="tablist" aria-label="Prompts by tool (raycloudtools)">
+                  <button class="tab" type="button" role="tab" aria-selected="true" aria-controls="rct-tab-codex" id="rct-t-codex">
+                    Codex
+                  </button>
+                  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="rct-tab-claude" id="rct-t-claude">
+                    Claude
+                  </button>
+                  <button class="tab" type="button" role="tab" aria-selected="false" aria-controls="rct-tab-gemini" id="rct-t-gemini">
+                    Gemini
+                  </button>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="rct-tab-codex" aria-labelledby="rct-t-codex">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>Propose a plan to add a “smart filter” to csiro-robotics/raycloudtools.
+
+Implementation idea:
+- compute a per-point confidence for bounded rays from:
+  (a) local neighbourhood consistency (kNN distances / surfel Mahalanobis distance via Cloud::getSurfels),
+  (b) intensity (alpha), when present,
+  (c) boundedness (alpha==0 → always keep; it represents free space).
+- keep points with confidence >= threshold (or keep-top-percent).
+
+Constraints:
+- no new dependencies (use existing Eigen + libnabo),
+- deterministic output (no RNG),
+- O(n log n) or better; don’t allocate huge extra memory.
+
+Deliverables:
+- new tool (suggest name: rayfilter) under raycloudtools/,
+- unit test added under tests/raytest that fails before and passes after,
+- exact build + test commands (cmake + ctest).</code></pre>
+                  </div>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="rct-tab-claude" aria-labelledby="rct-t-claude">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>Before writing code: propose a concrete plan with file paths, a confidence scoring formula, and a test strategy.
+Include edge cases (unbounded rays, missing intensity, tiny clouds) and performance constraints.
+
+Then ask me 3 questions if anything is ambiguous.</code></pre>
+                  </div>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="rct-tab-gemini" aria-labelledby="rct-t-gemini">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Prompt</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code>Plan an implementation for a new raycloudtools “smart filter” CLI.
+Include:
+- exact files/directories to add or modify (CMake + C++),
+- CLI usage examples,
+- acceptance criteria (“noise removed, high confidence kept”),
+- tests to add (gtest) and how to run them locally.</code></pre>
+                  </div>
+                </div>
+              </div>
+
+              <figure class="shot">
+                <img
+                  src="assets/screenshots/raycloudtools-step-2-plan.svg"
+                  alt="Illustrative screenshot: a concise implementation plan for a raycloudtools smart filter with tests"
+                  loading="lazy"
+                />
+                <figcaption>Outcome: a clear plan + tests before a single line of code changes.</figcaption>
+              </figure>
+            </article>
+
+            <article class="card">
+              <div class="step-head">
+                <span class="step-num">3</span>
+                <h3>Apply the patch as a diff</h3>
+              </div>
+              <p class="muted">Add the new tool, wire it into CMake, and keep the changes reviewable.</p>
+              <figure class="shot">
+                <img
+                  src="assets/screenshots/raycloudtools-step-3-diff.svg"
+                  alt="Illustrative screenshot: a small diff adding a raycloudtools filter tool and a gtest"
+                  loading="lazy"
+                />
+                <figcaption>Outcome: the change is easy to review and hard to regress.</figcaption>
+              </figure>
+            </article>
+
+            <article class="card">
+              <div class="step-head">
+                <span class="step-num">4</span>
+                <h3>Run tests and validate</h3>
+              </div>
+              <p class="muted">Run the unit tests and a quick CLI smoke test on a synthetic room ray cloud.</p>
+              <div class="codeblock" data-copy-block>
+                <div class="codebar">
+                  <span class="code-title">Commands</span>
+                  <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                </div>
+                <pre><code># from the raycloudtools repo root
+cmake -S . -B build -DRAYCLOUD_BUILD_TESTS=ON
+cmake --build build -j
+ctest --test-dir build -R raytest --output-on-failure
+
+# smoke test: make a cloud, filter it, inspect stats
+./build/bin/raycreate room 1
+./build/bin/rayfilter room.ply 0.75 confidence</code></pre>
+              </div>
+              <figure class="shot">
+                <img
+                  src="assets/screenshots/raycloudtools-step-4-tests.svg"
+                  alt="Illustrative screenshot: terminal output showing raytest passing and the new filter running"
+                  loading="lazy"
+                />
+                <figcaption>Outcome: you have both a passing test suite and a working CLI.</figcaption>
+              </figure>
+            </article>
+          </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="pilot">
+        <div class="container">
+          <h2>Start a 30‑minute pilot (low risk, high signal)</h2>
+          <p class="muted">
+            If you’re skeptical, good. This pilot is designed to produce a diff and a measurable outcome, not a debate.
+          </p>
+
+          <div class="grid-2">
+            <article class="card">
+              <h3>Pick the right first task</h3>
+              <ul class="checklist">
+                <li>Small surface area (1–3 files/packages)</li>
+                <li>Existing tests, or easy to add (ament/pytest)</li>
+                <li>Clear success criteria</li>
+                <li>Not safety-critical on day one (don’t start in the control loop)</li>
+              </ul>
+            </article>
+
+            <article class="card">
+              <h3>Run the workflow (permissions first)</h3>
+              <ol class="steps">
+                <li><strong>Read-only:</strong> map packages, launch/params, and runtime wiring.</li>
+                <li><strong>Plan:</strong> steps + tests + risks + rollback (sim/bag replay if possible).</li>
+                <li><strong>Patch:</strong> small diff, explain changes.</li>
+                <li><strong>Verify:</strong> run <code>colcon test</code> + a quick launch/sim smoke test.</li>
+                <li><strong>Review:</strong> treat it like any PR.</li>
+              </ol>
+            </article>
+          </div>
+
+          <div class="banner banner-accent">
+            <div class="banner-title">Definition of done</div>
+            <p class="banner-body">
+              You should end with: a reviewed diff, passing <code>colcon</code> tests, a minimal sim/bag validation, and a
+              short note: time spent, surprises, and what you’d change about the workflow.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="faq">
+        <div class="container">
+          <h2>FAQ: the concerns are real — here’s how to handle them</h2>
+
+          <div class="faq">
+            <details class="faq-item">
+              <summary>“It hallucinates. I can’t trust it.”</summary>
+              <div class="faq-body">
+                <p>
+                  Treat outputs as proposals, not truth. Use a workflow that makes mistakes cheap:
+                  <strong>require file paths</strong>, prefer <strong>diffs</strong>, and insist on <strong>tests</strong>.
+                </p>
+                <ul class="bullets">
+                  <li>Ask it to cite exact packages/symbols and the launch/params it relied on.</li>
+                  <li>Ask for edge cases: missing tf, bad timestamps, QoS incompatibilities, sensor dropouts.</li>
+                  <li>Prefer incremental diffs with fast gates: <code>colcon test</code>, bag replay, sim smoke test.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>“What about security and secrets?”</summary>
+              <div class="faq-body">
+                <p>
+                  Adopt with least privilege. Start in read‑only mode, avoid pasting secrets, and use org-approved
+                  configurations.
+                </p>
+                <ul class="bullets">
+                  <li>Never paste fleet credentials, OTA keys, or customer site data.</li>
+                  <li>Be careful with maps, calibration, and logs (they can be sensitive).</li>
+                  <li>Keep the same SAST/SCA gates you already trust.</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>“Will it make the stack worse over time?”</summary>
+              <div class="faq-body">
+                <p>
+                  It can—if you skip review. The fix is standards and enforcement: lint, tests, code owners, and smaller
+                  PRs. Make the agent follow your conventions, and reject diffs that don’t.
+                </p>
+                <ul class="bullets">
+                  <li>Require the agent to explain invariants and tradeoffs.</li>
+                  <li>Enforce formatting and static analysis (ament_lint, clang-tidy, etc.).</li>
+                  <li>Prefer characterization tests before refactors (bag replay is your friend).</li>
+                </ul>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>“Will I stop understanding my own system?”</summary>
+              <div class="faq-body">
+                <p>
+                  Use the agent to <em>improve</em> understanding: ask for diagrams (ROS graph, tf tree), invariants, and
+                  “why this is safe.” If you can’t explain the diff, don’t merge it.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>“Is this safe for robotics? I don’t want surprises on hardware.”</summary>
+              <div class="faq-body">
+                <p>
+                  Treat agentic tools as an acceleration of your existing engineering process, not a new runtime
+                  dependency. Don’t run unreviewed changes on a real robot. Gate with sim, bag replay, tests, and staged
+                  deployments.
+                </p>
+              </div>
+            </details>
+
+            <details class="faq-item">
+              <summary>“Which tool should I use: Codex, Claude, or Gemini?”</summary>
+              <div class="faq-body">
+                <p>
+                  Use the one your org can approve and support. For a first pilot, tool choice matters less than workflow:
+                  read-only → plan → diff → tests → review.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="references">
+        <div class="container">
+          <h2>References</h2>
+          <ul class="refs-list">
+            <li>
+              <a href="https://www.smashingmagazine.com/2020/04/landing-page-design/">Smashing Magazine: Landing page design</a>
+            </li>
+            <li>
+              <a href="https://cxl.com/es/blog/how-to-build-a-high-converting-landing-page/">CXL: High‑converting landing page anatomy</a>
+            </li>
+            <li>
+              <a href="https://survey.stackoverflow.co/2025/ai">Stack Overflow Developer Survey 2025 (AI)</a>
+            </li>
+            <li>
+              <a href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/"
+                >GitHub Research: Productivity &amp; happiness</a
+              >
+            </li>
+            <li>
+              <a href="https://github.blog/news-insights/research/research-quantifying-github-copilots-impact-on-code-quality/"
+                >GitHub Research: Code quality</a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/csiro-robotics/ohm">CSIRO Robotics: OHM (Occupancy Homogeneous Map)</a>
+            </li>
+            <li>
+              <a href="https://github.com/csiro-robotics/raycloudtools">CSIRO Robotics: RayCloudTools</a>
+            </li>
+            <li>
+              <a href="https://docs.ros.org/en/rolling/Concepts/Intermediate/About-Quality-of-Service-Settings.html">ROS&nbsp;2 docs: QoS settings</a>
+            </li>
+            <li>
+              <a href="https://docs.ros.org/en/rolling/How-To-Guides/Using-ros2bag/Using-ros2bag.html">ROS&nbsp;2 docs: rosbag2</a>
+            </li>
+          </ul>
+
+          <p class="footnote muted">
+            Stats on this page are quoted from the linked sources. Expect variance: the right question is “Does this help
+            <em>our</em> codebase and workflow?”—hence the pilot.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <div>
+          <div class="footer-title">Agentic Coding Tools</div>
+          <div class="footer-muted">A practical call to action for rigorous teams.</div>
+        </div>
+        <div class="footer-links">
+          <a href="#pilot">Start a pilot</a>
+          <a href="#example">Worked examples</a>
+          <a href="#faq">FAQ</a>
+          <a href="#references">References</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

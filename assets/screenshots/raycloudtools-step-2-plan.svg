@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Illustrative terminal screenshot: plan and tests for a raycloudtools smart filter">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" />
+      <stop offset="1" stop-color="#08101f" />
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="rgba(96,165,250,0.22)" />
+      <stop offset="1" stop-color="rgba(34,197,94,0.18)" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="rgba(0,0,0,0.55)" />
+    </filter>
+  </defs>
+
+  <rect x="48" y="44" width="1104" height="632" rx="26" fill="url(#bg)" stroke="rgba(255,255,255,0.12)" filter="url(#shadow)" />
+  <rect x="48" y="44" width="1104" height="62" rx="26" fill="url(#bar)" />
+  <rect x="48" y="80" width="1104" height="26" fill="url(#bar)" />
+
+  <circle cx="92" cy="75" r="8" fill="#fb7185" />
+  <circle cx="118" cy="75" r="8" fill="#fbbf24" />
+  <circle cx="144" cy="75" r="8" fill="#22c55e" />
+
+  <text x="180" y="82" fill="rgba(255,255,255,0.78)" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="16">
+    plan-first workflow • raycloudtools smart filter • tests + rollback
+  </text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
+    <text x="92" y="150" fill="rgba(255,255,255,0.74)">
+      <tspan>&gt; Plan a “smart filter” (no code yet). Include scoring, CLI, tests, performance. Cite files.</tspan>
+    </text>
+
+    <text x="92" y="214" fill="rgba(34,197,94,0.92)">
+      <tspan>PLAN (6 steps)</tspan>
+    </text>
+
+    <text x="92" y="248" fill="rgba(255,255,255,0.86)">
+      <tspan x="92" dy="0">1) Add raylib/rayconfidence.{h,cpp} to compute confidence per bounded ray</tspan>
+      <tspan x="92" dy="28">2) Confidence = w1 * intensity(alpha) + w2 * exp(-mahalanobis²) + w3 * neighbour_count</tspan>
+      <tspan x="92" dy="28">3) Keep all unbounded rays (alpha==0), filter bounded rays by threshold or keep-top-percent</tspan>
+      <tspan x="92" dy="28">4) Add new CLI tool: raycloudtools/rayfilter/rayfilter.cpp</tspan>
+      <tspan x="92" dy="28">5) Wire tool into raycloudtools/CMakeLists.txt and new subdir CMakeLists.txt</tspan>
+      <tspan x="92" dy="28">6) Add gtest in tests/raytest/raytests.cpp to lock behaviour</tspan>
+    </text>
+
+    <text x="92" y="438" fill="rgba(96,165,250,0.92)">
+      <tspan>TESTS</tspan>
+    </text>
+    <text x="92" y="468" fill="rgba(255,255,255,0.84)">
+      <tspan x="92" dy="0">• create synthetic room (raycreate room 1), inject outliers (single isolated bounded points)</tspan>
+      <tspan x="92" dy="28">• assert: bounded ray count decreases, unbounded ray count unchanged, output deterministic</tspan>
+    </text>
+
+    <text x="92" y="550" fill="rgba(251,191,36,0.92)">
+      <tspan>RISKS</tspan>
+    </text>
+    <text x="92" y="580" fill="rgba(255,255,255,0.78)">
+      <tspan x="92" dy="0">• over-filtering thin structures (mitigate: keep-top-percent mode + expose params)</tspan>
+      <tspan x="92" dy="28">• perf on huge clouds (mitigate: kNN once; reuse surfel results; avoid extra copies)</tspan>
+    </text>
+
+    <text x="92" y="652" fill="rgba(34,197,94,0.92)">
+      <tspan>ROLLBACK:</tspan>
+      <tspan fill="rgba(255,255,255,0.78)"> tool is additive; existing tools unchanged; revert commit if needed</tspan>
+    </text>
+  </g>
+
+  <text x="1090" y="650" text-anchor="end" fill="rgba(255,255,255,0.45)" font-family="ui-sans-serif, system-ui" font-size="14">
+    illustrative
+  </text>
+</svg>
+

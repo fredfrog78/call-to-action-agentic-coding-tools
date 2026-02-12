@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Illustrative terminal screenshot: locating a critical boolean parsing bug in OHM">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" />
+      <stop offset="1" stop-color="#08101f" />
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="rgba(96,165,250,0.22)" />
+      <stop offset="1" stop-color="rgba(34,197,94,0.18)" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="rgba(0,0,0,0.55)" />
+    </filter>
+  </defs>
+
+  <rect x="48" y="44" width="1104" height="632" rx="26" fill="url(#bg)" stroke="rgba(255,255,255,0.12)" filter="url(#shadow)" />
+  <rect x="48" y="44" width="1104" height="62" rx="26" fill="url(#bar)" />
+  <rect x="48" y="80" width="1104" height="26" fill="url(#bar)" />
+
+  <!-- Window controls -->
+  <circle cx="92" cy="75" r="8" fill="#fb7185" />
+  <circle cx="118" cy="75" r="8" fill="#fbbf24" />
+  <circle cx="144" cy="75" r="8" fill="#22c55e" />
+
+  <text x="180" y="82" fill="rgba(255,255,255,0.78)" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="16">
+    codex • read-only session • OHM bug localization
+  </text>
+
+  <!-- Content -->
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18" fill="rgba(255,255,255,0.90)">
+    <text x="92" y="150">
+      <tspan fill="rgba(96,165,250,0.95)">$</tspan>
+      <tspan> codex --read-only</tspan>
+    </text>
+    <text x="92" y="184" fill="rgba(255,255,255,0.74)">
+      <tspan>&gt; Verify MapValue boolean parsing matches its docs. Provide file + line references.</tspan>
+    </text>
+
+    <text x="92" y="236" fill="rgba(34,197,94,0.92)">
+      <tspan>FINDING (verified by file paths)</tspan>
+    </text>
+
+    <text x="92" y="270" fill="rgba(255,255,255,0.86)">
+      <tspan x="92" dy="0">• ohm/MapInfo.h — docs: bool strings {true,false,yes,no,on,off}</tspan>
+      <tspan x="92" dy="28">• ohm/MapInfo.cpp:72 — StringConvert&lt;bool&gt;::convert()</tspan>
+      <tspan x="92" dy="28">• ohm/MapInfo.cpp:87–90 — "false/no/off" returns true (bug)</tspan>
+      <tspan x="92" dy="28">• tests/ohmtest/* — gtest runner to lock this down</tspan>
+    </text>
+
+    <text x="92" y="424" fill="rgba(96,165,250,0.92)">
+      <tspan>MINIMAL REPRO</tspan>
+    </text>
+    <text x="92" y="454" fill="rgba(255,255,255,0.84)">
+      <tspan>MapValue v("flag", "false");</tspan>
+      <tspan x="92" dy="26">bool b = (bool)v; // expected false, actual true</tspan>
+    </text>
+
+    <text x="92" y="566" fill="rgba(255,255,255,0.78)">
+      <tspan fill="rgba(34,197,94,0.92)">Recommendation:</tspan>
+      <tspan> change MapInfo.cpp to return false for false/no/off;</tspan>
+      <tspan x="92" dy="26">add a gtest so this can’t regress silently.</tspan>
+    </text>
+  </g>
+
+  <text x="1090" y="650" text-anchor="end" fill="rgba(255,255,255,0.45)" font-family="ui-sans-serif, system-ui" font-size="14">
+    illustrative
+  </text>
+</svg>

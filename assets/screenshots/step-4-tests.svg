@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-label="Illustrative terminal screenshot: ctest and gtest passing after an agentic change">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220" />
+      <stop offset="1" stop-color="#08101f" />
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="rgba(96,165,250,0.22)" />
+      <stop offset="1" stop-color="rgba(34,197,94,0.18)" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="rgba(0,0,0,0.55)" />
+    </filter>
+  </defs>
+
+  <rect x="48" y="44" width="1104" height="632" rx="26" fill="url(#bg)" stroke="rgba(255,255,255,0.12)" filter="url(#shadow)" />
+  <rect x="48" y="44" width="1104" height="62" rx="26" fill="url(#bar)" />
+  <rect x="48" y="80" width="1104" height="26" fill="url(#bar)" />
+
+  <circle cx="92" cy="75" r="8" fill="#fb7185" />
+  <circle cx="118" cy="75" r="8" fill="#fbbf24" />
+  <circle cx="144" cy="75" r="8" fill="#22c55e" />
+
+  <text x="180" y="82" fill="rgba(255,255,255,0.78)" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="16">
+    verify loop • run the same checks as CI
+  </text>
+
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace" font-size="18">
+    <text x="92" y="148" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="148" fill="rgba(255,255,255,0.90)">cmake -S . -B build -DOHM_FEATURE_TEST=ON -DOHM_FEATURE_OPENCL=OFF -DOHM_FEATURE_CUDA=OFF</text>
+    <text x="92" y="186" fill="rgba(34,197,94,0.92)">--</text>
+    <text x="132" y="186" fill="rgba(255,255,255,0.78)">Configuring done</text>
+
+    <text x="92" y="236" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="236" fill="rgba(255,255,255,0.90)">cmake --build build -j</text>
+    <text x="92" y="274" fill="rgba(34,197,94,0.92)">[100%]</text>
+    <text x="176" y="274" fill="rgba(255,255,255,0.78)">Built target ohmtest</text>
+
+    <text x="92" y="324" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="324" fill="rgba(255,255,255,0.90)">ctest --test-dir build -R ohmtest --output-on-failure</text>
+    <text x="92" y="362" fill="rgba(255,255,255,0.72)">1/1 Test #1: ohmtest ....................................</text>
+    <text x="934" y="362" fill="rgba(34,197,94,0.92)">Passed</text>
+
+    <text x="92" y="412" fill="rgba(96,165,250,0.95)">$</text>
+    <text x="114" y="412" fill="rgba(255,255,255,0.90)">./build/bin/ohmtest --gtest_filter=MapValueBoolFromString*</text>
+    <text x="92" y="450" fill="rgba(255,255,255,0.72)">[ RUN      ] MapValueBoolFromString.FalseStrings</text>
+    <text x="92" y="480" fill="rgba(34,197,94,0.92)">[       OK ]</text>
+    <text x="176" y="480" fill="rgba(255,255,255,0.72)">MapValueBoolFromString.FalseStrings</text>
+
+    <rect x="80" y="520" width="1040" height="112" rx="18" fill="rgba(34,197,94,0.12)" stroke="rgba(34,197,94,0.22)" />
+    <text x="112" y="560" fill="rgba(255,255,255,0.88)" font-size="18">
+      <tspan font-weight="800">Result:</tspan>
+      <tspan fill="rgba(255,255,255,0.78)"> bug fixed + regression test added • safe to merge</tspan>
+    </text>
+  </g>
+
+  <text x="1090" y="650" text-anchor="end" fill="rgba(255,255,255,0.45)" font-family="ui-sans-serif, system-ui" font-size="14">
+    illustrative
+  </text>
+</svg>
