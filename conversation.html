@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="A recreated chat transcript showing how an agentic coding tool generated this robotics-focused landing page (HTML, CSS, JS, assets, and a GitHub push)."
+    />
+    <meta name="theme-color" content="#0b1220" />
+
+    <meta property="og:title" content="Bonus Worked Example: Website Generation (Conversation Transcript)" />
+    <meta
+      property="og:description"
+      content="See the prompt→plan→patch→verify loop used to generate this site as a static webpage, end-to-end."
+    />
+    <meta property="og:type" content="website" />
+
+    <title>Conversation Transcript — Agentic Coding Tools</title>
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-elevate>
+      <div class="container header-row">
+        <div class="brand">
+          <a class="brand-link" href="index.html#top" aria-label="Agentic Coding Tools home">
+            <span class="brand-mark" aria-hidden="true"></span>
+            <span class="brand-name">Agentic Coding Tools</span>
+          </a>
+          <span class="brand-tag">Transcript • Bonus example</span>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-toggle" type="button" aria-controls="nav-links" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span aria-hidden="true">Menu</span>
+          </button>
+
+          <div class="nav-links" id="nav-links">
+            <a class="nav-link" href="index.html#phase-change">Phase change</a>
+            <a class="nav-link" href="index.html#capabilities">Capabilities</a>
+            <a class="nav-link" href="index.html#evidence">Evidence</a>
+            <a class="nav-link" href="index.html#example">Worked examples</a>
+            <a class="nav-link" href="index.html#pilot">30‑min pilot</a>
+            <a class="nav-link" href="index.html#faq">FAQ</a>
+            <a class="nav-link" href="conversation.html" aria-current="page">Conversation</a>
+          </div>
+        </nav>
+
+        <div class="header-actions">
+          <button class="btn btn-quiet theme-toggle" type="button" aria-label="Toggle theme" data-theme-toggle>
+            <span class="theme-toggle-label">Theme</span>
+          </button>
+          <a class="btn btn-primary" href="index.html#pilot">Start a pilot</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero hero-compact">
+        <div class="container hero-grid hero-grid-single">
+          <div class="hero-copy">
+            <p class="eyebrow">
+              <span class="pill">Bonus worked example</span>
+              <span class="pill pill-quiet">Website generation</span>
+              <span class="pill pill-quiet">Prompt → plan → patch → verify</span>
+            </p>
+
+            <h1>A recreated transcript of generating this website with an agentic coding tool.</h1>
+            <p class="lead">
+              This page is a <strong>chat-style transcript</strong> that mirrors the way the site evolved: requirements,
+              corrections, worked examples grounded in real robotics repos, and finally a GitHub push.
+            </p>
+            <p class="note">
+              Notes: this transcript is <strong>trimmed for readability</strong> and includes a few representative command
+              snippets. The repos referenced are real; the “screenshots” in the main page are illustrative SVGs.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tight">
+        <div class="container">
+          <h2>Conversation (recreated)</h2>
+
+          <div class="chat" role="list" aria-label="Conversation transcript">
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>
+                  Research the best and most convincing design patterns for website design and use them to research,
+                  design and implement a website that will convince software engineers and researchers to adopt agentic
+                  coding tools.
+                </p>
+                <p class="muted">
+                  Audience constraints: skeptical engineers, brownfield robotics stacks, evidence + worked examples,
+                  reduce curiosity friction, counter concerns about safety/correctness.
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>
+                  Built a static landing page with a rigor-first conversion structure: clear thesis, capability map,
+                  evidence, worked examples, and a low-risk “30‑minute pilot.”
+                </p>
+                <ul class="bullets">
+                  <li>Single-page site: <code>index.html</code> + <code>styles.css</code> + <code>app.js</code>.</li>
+                  <li>Interaction polish: theme toggle, mobile nav, tabs, and copy-to-clipboard prompts.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>
+                  Ground the language examples and challenges in robotics software: ROS&nbsp;2, perception, autonomy, and
+                  deployment. It should feel like it was written by a robotics software engineer who now “gets it.”
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>
+                  Updated the voice and examples to robotics reality: launch/parameter sprawl, tf issues, QoS mismatch,
+                  bag replay, sim smoke tests, and staged rollout to real hardware.
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>
+                  Remove this sentence: “This page is intentionally technical: it shows what works, what fails, and a
+                  workflow that reduces FUD without pretending safety and correctness don’t matter.”
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>Removed the internal-sounding sentence and tightened the surrounding copy.</p>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>The “Force a plan + tests” buttons for Claude and Gemini have no effect — are they necessary?</p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>
+                  Kept the buttons (they are useful UX), and fixed tabs so nested tab groups work reliably (example-level
+                  tabs + tool-prompt tabs).
+                </p>
+                <div class="codeblock">
+                  <div class="codebar">
+                    <span class="code-title">Representative fix (JS)</span>
+                  </div>
+                  <pre><code>// only bind tabs owned by this [data-tabs] group
+const tablist = getOwnedTablist(group);
+const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+
+// only toggle panels that belong to the same group (supports nested tabs)
+const byId = document.getElementById(panelId);
+if (byId &amp;&amp; byId.closest("[data-tabs]") === group) panel = byId;</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>
+                  Derive the worked example from this codebase and identify a critical bug:
+                  <a href="https://github.com/csiro-robotics/ohm">csiro-robotics/ohm</a>
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>
+                  Grounded Example&nbsp;1 in a real, “robot misbehaves because config lies” class of failure: boolean parsing
+                  interpreting <code>false</code>/<code>no</code>/<code>off</code> as <code>true</code>.
+                </p>
+                <ul class="bullets">
+                  <li>Workflow shown: read-only map → plan+tests → minimal diff → run tests.</li>
+                  <li>All screenshots are illustrative SVGs to keep the site buildless and portable.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>
+                  Create a second worked example: add a “smart filter” to
+                  <a href="https://github.com/csiro-robotics/raycloudtools">csiro-robotics/raycloudtools</a> that removes noisy
+                  points and keeps high confidence points.
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>
+                  Added Example&nbsp;2 as a tabbed, end‑to‑end workflow: map pipeline → plan+tests → diff → validate with
+                  <code>ctest</code> and a CLI smoke test.
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>Collapse the worked examples into tabs to save page length.</p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>
+                  Wrapped the worked examples in a top-level tab set (OHM vs RayCloudTools), while keeping the tool-prompt
+                  tabs inside each example.
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>Replace the word “FUD” with a term that has less baggage.</p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>Replaced “FUD” with “uncertainty” / “concerns” across the site.</p>
+                <div class="codeblock">
+                  <div class="codebar">
+                    <span class="code-title">Representative command</span>
+                  </div>
+                  <pre><code>rg -n "\\bFUD\\b" -S .</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>Great. Push it to GitHub.</p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>Initialized a repo, committed the static site, and pushed to GitHub.</p>
+                <div class="codeblock">
+                  <div class="codebar">
+                    <span class="code-title">Representative commands</span>
+                  </div>
+                  <pre><code>git init -b main
+git add .
+git commit -m "Initial agentic coding tools landing page"
+git push -u origin main</code></pre>
+                </div>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>
+                  Add a third worked example tab. Ask the model to analyse
+                  <a href="https://github.com/csiro-robotics/HOTFormerLoc">csiro-robotics/HOTFormerLoc</a> and provide the top
+                  three recommendations for enabling edge deployment without significant loss of performance.
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>
+                  Added Example&nbsp;3 focused on real-world deployment: map inference hot path, lock constraints, profile,
+                  then produce the top three edge recommendations with measurable validation gates.
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-user" role="listitem" aria-label="User message">
+              <div class="msg-meta">You</div>
+              <div class="bubble">
+                <p>
+                  Add a separate webpage that visually replicates this conversation to show a bonus worked example of
+                  using a coding tool for website generation.
+                </p>
+              </div>
+            </div>
+
+            <div class="msg msg-assistant" role="listitem" aria-label="Assistant message">
+              <div class="msg-meta">Assistant</div>
+              <div class="bubble">
+                <p>
+                  You’re looking at it. This page exists to make the meta-point: agentic tools are not just “code help” —
+                  they can generate and refine product-quality documentation and UX, with a reviewable trail of decisions.
+                </p>
+                <p class="muted">
+                  Next step: link this transcript from the main “Worked examples” section so skeptical teammates can see a
+                  concrete prompt→diff→push loop.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="banner banner-accent">
+            <div class="banner-title">Try it yourself</div>
+            <p class="banner-body">
+              Pick any small, bounded improvement you’ve been delaying (docs, refactor, build cleanup, a failing test) and
+              run the same loop: read-only map → plan+tests → diff → verify → review.
+              <a href="index.html#pilot">Start with the 30‑minute pilot checklist.</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <div>
+          <div class="footer-title">Agentic Coding Tools</div>
+          <div class="footer-muted">A practical call to action for rigorous teams.</div>
+        </div>
+        <div class="footer-links">
+          <a href="index.html#pilot">Start a pilot</a>
+          <a href="index.html#example">Worked examples</a>
+          <a href="conversation.html" aria-current="page">Conversation</a>
+          <a href="index.html#references">References</a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+

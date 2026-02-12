@@ -11,6 +11,7 @@ Because this is a static site, you can open it directly or serve it:
 
 ## What’s inside
 - `index.html` — single-page site (sections, prompts, FAQ, references)
+- `conversation.html` — bonus “chat transcript” page showing the website generation workflow
 - `styles.css` — responsive styling + light/dark themes
 - `app.js` — minimal JS (theme toggle, mobile nav, tabs, copy buttons)
 - `assets/screenshots/*.svg` — illustrative “screenshots” for the worked examples
