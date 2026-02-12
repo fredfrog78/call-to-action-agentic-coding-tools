@@ -960,12 +960,131 @@ Output should be concrete and actionable: file paths, commands, and acceptance c
             </article>
           </div>
 
-          <div class="banner banner-accent">
-            <div class="banner-title">Definition of done</div>
-            <p class="banner-body">
-              You should end with: a reviewed diff, passing <code>colcon</code> tests, a minimal sim/bag validation, and a
-              short note: time spent, surprises, and what you’d change about the workflow.
-            </p>
+          <div class="stack">
+            <article class="card">
+              <h3>Get started in five minutes</h3>
+              <p class="muted">
+                Install one CLI, authenticate, and start a read‑only mapping pass in a real repo. Pick the tool your org
+                can approve; workflow matters more than brand.
+              </p>
+
+              <div class="tabs" data-tabs>
+                <div class="tablist" role="tablist" aria-label="Install and run by tool">
+                  <button
+                    class="tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="true"
+                    aria-controls="pilotcli-tab-codex"
+                    id="pilotcli-t-codex"
+                  >
+                    Codex
+                  </button>
+                  <button
+                    class="tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="pilotcli-tab-claude"
+                    id="pilotcli-t-claude"
+                  >
+                    Claude
+                  </button>
+                  <button
+                    class="tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    aria-controls="pilotcli-tab-gemini"
+                    id="pilotcli-t-gemini"
+                  >
+                    Gemini
+                  </button>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="pilotcli-tab-codex" aria-labelledby="pilotcli-t-codex">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Install + run (Codex CLI)</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code># Install
+brew install --cask codex
+# or (any OS with Node)
+npm install -g @openai/codex
+
+# Authenticate (API key)
+export OPENAI_API_KEY="YOUR_KEY"
+printenv OPENAI_API_KEY | codex login --with-api-key
+
+# Run in your repo (start read-only)
+cd ~/ros2_ws/src/your_package
+codex --sandbox read-only</code></pre>
+                  </div>
+                  <p class="refs">
+                    <a href="https://github.com/openai/codex">Docs: openai/codex</a>
+                  </p>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="pilotcli-tab-claude" aria-labelledby="pilotcli-t-claude">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Install + run (Claude Code)</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code># Install (pick one)
+brew install --cask claude-code            # macOS
+curl -fsSL https://claude.ai/install.sh | bash  # Linux
+winget install Anthropic.ClaudeCode        # Windows
+
+# Run in your repo (follow login prompts)
+cd ~/ros2_ws/src/your_package
+claude</code></pre>
+                  </div>
+                  <p class="refs">
+                    <a href="https://docs.anthropic.com/en/docs/claude-code">Docs: Claude Code</a>
+                  </p>
+                </div>
+
+                <div class="tabpanel" role="tabpanel" id="pilotcli-tab-gemini" aria-labelledby="pilotcli-t-gemini">
+                  <div class="codeblock" data-copy-block>
+                    <div class="codebar">
+                      <span class="code-title">Install + run (Gemini CLI)</span>
+                      <button class="btn btn-quiet btn-copy" type="button" data-copy>Copy</button>
+                    </div>
+                    <pre><code># Install
+brew install gemini-cli
+# or (any OS with Node)
+npm install -g @google/gemini-cli
+
+# Authenticate (choose ONE)
+gemini   # then select “Login with Google”
+# or:
+export GEMINI_API_KEY="YOUR_KEY"
+gemini
+
+# Run in your repo
+cd ~/ros2_ws/src/your_package
+gemini</code></pre>
+                  </div>
+                  <p class="refs">
+                    <a href="https://github.com/google-gemini/gemini-cli">Docs: google-gemini/gemini-cli</a>
+                  </p>
+                </div>
+              </div>
+
+              <p class="muted">
+                Next: copy the “Map the codebase (read‑only)” prompt from any worked example and run it in your own repo.
+              </p>
+            </article>
+
+            <div class="banner banner-accent">
+              <div class="banner-title">Definition of done</div>
+              <p class="banner-body">
+                You should end with: a reviewed diff, passing <code>colcon</code> tests, a minimal sim/bag validation, and a
+                short note: time spent, surprises, and what you’d change about the workflow.
+              </p>
+            </div>
           </div>
         </div>
       </section>

@@ -449,6 +449,12 @@ h1 {
   padding: 54px 0;
 }
 
+.stack {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
 h2 {
   margin: 0 0 10px;
   font-size: clamp(24px, 2.8vw, 32px);
